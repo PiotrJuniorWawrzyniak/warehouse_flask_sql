@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Operacji</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Historia Operacji</h1>
+
+    <form action="{{ url_for('historia') }}" method="get">
+        <label for="line_from">Od linii:</label>
+        <input type="number" id="line_from" name="line_from" min="1" required>
+        <label for="line_to">Do linii:</label>
+        <input type="number" id="line_to" name="line_to" min="1" required>
+        <button type="submit">Pokaż zakres</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <h2>Wszystkie operacje</h2>
+    <ul>
+        {% for action in historia %}
+            <li>{{ action.description }}</li>
+        {% endfor %}
+    </ul>
+
+    <div id="back-link">
+        <a href="{{ url_for('index') }}">Powrót do głównej strony</a>
+    </div>
+</body>
+</html>

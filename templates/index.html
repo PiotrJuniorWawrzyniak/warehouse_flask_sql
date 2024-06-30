@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Stan Magazynu</h1>
+    <h2>Saldo: {{ saldo }} zł</h2>
+
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+
+    <h2>Stan magazynowy</h2>
+    <ul>
+        {% for product in magazyn %}
+        <li>{{ product.name }}: {{ product.quantity }} szt.</li>
+        {% endfor %}
+    </ul>
+
+    <form id="purchase-form" action="" method="post">
+        <h2>Zakup</h2>
+        <input type="hidden" name="action" value="zakup">
+        <label for="product_name">Nazwa produktu:</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <label for="product_price">Cena produktu:</label>
+        <input type="number" step="0.01" id="product_price" name="product_price" required>
+        <label for="pieces_number">Ilość:</label>
+        <input type="number" id="pieces_number" name="pieces_number" required>
+        <button type="submit">Kup</button>
+    </form>
+
+    <form id="sell-form" action="" method="post">
+        <h2>Sprzedaż</h2>
+        <input type="hidden" name="action" value="sprzedaz">
+        <label for="sell_product_name">Nazwa produktu:</label>
+        <input type="text" id="sell_product_name" name="product_name" required>
+        <label for="sell_pieces_number">Ilość:</label>
+        <input type="number" id="sell_pieces_number" name="pieces_number" required>
+        <button type="submit">Sprzedaj</button>
+    </form>
+
+    <form id="balance-form" action="" method="post">
+        <h2>Zmiana salda</h2>
+        <input type="hidden" name="action" value="saldo">
+        <label for="balance-amount">Wartość zmiany salda:</label>
+        <input type="number" step="0.01" id="balance-amount" name="amount" required>
+        <button type="submit">Zmień saldo</button>
+    </form>
+
+    <div id="history-link">
+        <a href="{{ url_for('historia') }}">Zobacz historię operacji</a>
+    </div>
+</body>
+</html>
