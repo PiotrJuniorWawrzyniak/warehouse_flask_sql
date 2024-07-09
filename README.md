@@ -77,7 +77,7 @@ The Warehouse Management System is a web application that allows for managing wa
 
 ## Authors
 
-- Piotr Wawrzyniak
+- Piotr Wawrzyniak - [piotrjuniorwawrzyniak@gmail.com](mailto:piotrjuniorwawrzyniak@gmail.com)
 
 ## License
 
