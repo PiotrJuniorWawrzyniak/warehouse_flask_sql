@@ -21,7 +21,7 @@ class Product(db.Model):
     name = db.Column(db.String(80), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    warehouse_id = db.Column(db.Integer, db.ForeignKey('warehouse.id'), nullable=False)
+    warehouse_id = db.Column(db.Integer, db.ForeignKey("warehouse.id"), nullable=False)
 
     def save_to_db(self):
         db.session.add(self)
@@ -31,7 +31,7 @@ class Product(db.Model):
 class Action(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(200), nullable=False)
-    warehouse_id = db.Column(db.Integer, db.ForeignKey('warehouse.id'), nullable=False)
+    warehouse_id = db.Column(db.Integer, db.ForeignKey("warehouse.id"), nullable=False)
 
     def save_to_db(self):
         db.session.add(self)
